@@ -1,43 +1,79 @@
+import { FiMail, FiMapPin, FiPhone, FiSend } from 'react-icons/fi';
 import { motion } from 'framer-motion';
-import { FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
 
-export default function Contact() {
+const Contact = () => {
+  const [responseMessage, setResponseMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setResponseMessage('');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('https://formspree.io/f/xjkoaonb', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success('Message sent successfully!');
+        form.reset();
+      } else {
+        toast.error(data.error || 'Something went wrong.');
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to send message. Try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800/50">
-      <div className="max-w-7xl px-4 lg:px-8">
+    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900 px-4 lg:px-8">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold mb-4 dark:text-white">
+          <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
             Get In <span className="text-blue-600">Touch</span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Have a project in mind or want to discuss opportunities? Feel free to reach out!
+          <p className="text-gray-600 dark:text-gray-400">
+            Feel free to reach out for collaborations or just a friendly hello!
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Information */}
+        <div className="grid md:grid-cols-2 gap-10">
+          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="space-y-6"
           >
             <div className="flex items-start gap-4">
-              <div className="p-3 bg-blue-100 dark:bg-blue-900/50 rounded-full text-blue-600 dark:text-blue-400">
-                <FiMail size={20} />
-              </div>
+              <FiMail className="text-blue-600 dark:text-blue-400 text-xl mt-1" />
               <div>
-                <h3 className="text-lg font-semibold dark:text-white mb-1">Email Me</h3>
+                <h3 className="font-semibold text-gray-800 dark:text-white">Email</h3>
                 <a
                   href="mailto:shubhampawar01999@gmail.com"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition"
                 >
                   shubhampawar01999@gmail.com
                 </a>
@@ -45,64 +81,61 @@ export default function Contact() {
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="p-3 bg-blue-100 dark:bg-blue-900/50 rounded-full text-blue-600 dark:text-blue-400">
-                <FiMapPin size={20} />
-              </div>
+              <FiPhone className="text-blue-600 dark:text-blue-400 text-xl mt-1" />
               <div>
-                <h3 className="text-lg font-semibold dark:text-white mb-1">Location</h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Tasgaon, Sangli,Maharashtra 416408.
-                </p>
+                <h3 className="font-semibold text-gray-800 dark:text-white">Phone</h3>
+                <a
+                  href="tel:+918600083615"
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition"
+                >
+                  +91 8600083615
+                </a>
               </div>
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="p-3 bg-blue-100 dark:bg-blue-900/50 rounded-full text-blue-600 dark:text-blue-400">
-                <FiPhone size={20} />
-              </div>
+              <FiMapPin className="text-blue-600 dark:text-blue-400 text-xl mt-1" />
               <div>
-                <h3 className="text-lg font-semibold dark:text-white mb-1">Call Me</h3>
-                <a
-                  href="tel:+1234567890"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  +91 8600083615
-                </a>
+                <h3 className="font-semibold text-gray-800 dark:text-white">Location</h3>
+                <p className="text-gray-600 dark:text-gray-400">Pune, Maharashtra</p>
               </div>
             </div>
           </motion.div>
 
           {/* Contact Form */}
           <motion.form
+            onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-1">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                  placeholder="John Doe"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                  placeholder="john@example.com"
-                />
-              </div>
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
+                placeholder="Your Name"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
+                placeholder="Your email"
+              />
             </div>
             <div>
               <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -111,30 +144,47 @@ export default function Contact() {
               <input
                 type="text"
                 id="subject"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                placeholder="Project Inquiry"
+                name="subject"
+                required
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
+                placeholder="What's this about?"
               />
             </div>
             <div>
               <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Your Message
+                Message
               </label>
               <textarea
                 id="message"
-                rows={3}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                placeholder="Hello, I'd like to talk about..."
+                name="message"
+                rows={4}
+                required
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
+                placeholder="Write your message..."
               ></textarea>
             </div>
+
             <button
               type="submit"
-              className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+              disabled={isSubmitting}
+              className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 disabled:opacity-70"
             >
-              Send Message
+              {isSubmitting ? 'Sending...' : (
+                <>
+                  <FiSend size={18} />
+                  Send Message
+                </>
+              )}
             </button>
+
+            {responseMessage && (
+              <p className="text-center text-sm mt-2 text-green-600 dark:text-green-400">{responseMessage}</p>
+            )}
           </motion.form>
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default Contact;

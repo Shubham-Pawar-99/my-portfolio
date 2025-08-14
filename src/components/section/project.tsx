@@ -86,7 +86,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         >
           View Code
         </a>
-        {project.demo && (
+        {/* {project.demo && (
           <a 
             href={project.demo} 
             className="flex-1 py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-center font-medium transition-colors"
@@ -95,7 +95,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           >
             Live Demo
           </a>
-        )}
+        )} */}
       </div>
     </motion.div>
   );

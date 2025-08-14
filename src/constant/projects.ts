@@ -17,5 +17,4 @@ export const PROJECTS: Project[] = [
     githubUrl: "#",
     liveUrl: "#"
   },
-  // Add more projects
 ]

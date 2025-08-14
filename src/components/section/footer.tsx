@@ -26,7 +26,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="py-8 md:py-12 bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+    <footer className="py-8 md:py-12 bggray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 rounded-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -62,7 +62,7 @@ export default function Footer() {
           </p>
 
           {/* Optional Additional Links */}
-          <div className="flex flex-wrap justify-center gap-3 md:gap-4 mt-2">
+          {/* <div className="flex flex-wrap justify-center gap-3 md:gap-4 mt-2">
             <a
               href="#"
               className="text-xs md:text-sm text-gray-500 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -83,7 +83,7 @@ export default function Footer() {
             >
               Contact
             </a>
-          </div>
+          </div> */}
         </motion.div>
       </div>
     </footer>

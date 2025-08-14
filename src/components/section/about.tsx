@@ -8,7 +8,7 @@ export default function About() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-6">
                     <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-                        I'm a dedicated <span className="font-medium text-blue-600 dark:text-blue-400">React.js Developer</span> with 1.6 years of hands-on experience building interactive and responsive web applications. I specialize in creating efficient, maintainable React components with clean code architecture.
+                        I'm a dedicated <span className="font-medium text-blue-600 dark:text-blue-400">React.js Developer</span> with an hands-on experience building interactive and responsive web applications. I specialize in creating efficient, maintainable React components with clean code architecture.
                     </p>
 
                     <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
@@ -43,8 +43,8 @@ export default function About() {
                 <div className="flex justify-center relative">
                     <div className="relative">
                         <img
-                            src="/assets/images/avatar.jpg"
-                            alt="Profile"
+                            src="/Photo.png"
+                            alt="Shubham Pawar"
                             className="rounded-full w-64 h-64 object-cover border-4 border-blue-500 shadow-lg"
                         />
                         <div className="absolute -bottom-4 -right-4 bg-white dark:bg-gray-800 p-3 rounded-full shadow-md">
@@ -58,26 +58,32 @@ export default function About() {
             <div className="mt-20">
                 <h3 className="text-2xl font-semibold mb-8 text-center dark:text-white">My Professional Journey</h3>
                 <div className="relative">
-                    <div className="absolute left-1/2 h-full w-0.5 bg-gray-200 dark:bg-gray-700 transform -translate-x-1/2"></div>
+                    <div className="hidden md:block absolute left-1/2 h-full rounded-lg w-0.5 bg-gray-200 dark:bg-gray-700 transform -translate-x-1/2"></div>
 
                     <div className="space-y-8">
                         {[
                             {
-                                year: "2024 - Present",
-                                role: "React Developer",
-                                company: "Valt Tech",
+                                year: "January 2023 - Present",
+                                role: "Software Engineer (React.js)",
+                                company: "Web Crypt Technology",
                                 description: "Developing and maintaining React applications with TypeScript, implementing new features, and optimizing performance."
                             },
                             {
-                                year: "2023 - 2024",
-                                role: "Frontend Intern",
-                                company: "Valt Tech",
+                                year: "Augest 2022 - December 2022",
+                                role: "Software Engineer Trainee",
+                                company: "Web Crypt Technology",
                                 description: "Developing and maintaining React applications with TypeScript, implementing new features, and optimizing performance."
                             },
                             {
                                 year: "2020 - 2022",
-                                role: "Computer Application Post-Graduate",
+                                role: "Computer Application Post-Graduate (MCA)",
                                 company: "Savitribai Phule Pune University",
+                                description: "Specialized in Web Technologies and Software Development."
+                            },
+                            {
+                                year: "2017 - 2020",
+                                role: "Computer Science Graduate (B.Sc.)",
+                                company: "Shivaji University, Kolhapur",
                                 description: "Specialized in Web Technologies and Software Development."
                             }
                         ].map((item, index) => (
@@ -87,7 +93,7 @@ export default function About() {
                             >
                                 <div className={`w-full md:w-1/2 p-6 rounded-lg shadow-md ${index % 2 === 0 ? 'bg-white dark:bg-gray-800 mr-auto' : 'bg-gray-50 dark:bg-gray-800/50 ml-auto'} border border-gray-100 dark:border-gray-700`}>
                                     <div className="flex items-center gap-3 mb-2">
-                                        <div className="w-3 h-3 rounded-full bg-blue-500 absolute left-1/2 transform -translate-x-1/2"></div>
+                                        <div className="hidden md:block w-3 h-3 rounded-full bg-blue-500 absolute left-1/2 transform -translate-x-1/2"></div>
                                         <span className="text-blue-600 dark:text-blue-400 font-medium">{item.year}</span>
                                     </div>
                                     <h4 className="text-lg font-semibold dark:text-white">{item.role}</h4>
