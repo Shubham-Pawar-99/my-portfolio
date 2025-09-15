@@ -56,24 +56,24 @@ export default function About() {
 
             {/* Experience Timeline */}
             <div className="mt-20">
-                <h3 className="text-2xl font-semibold mb-8 text-center dark:text-white">My Professional Journey</h3>
+                <h3 className="text-2xl font-semibold mb-8 text-center dark:text-white">My Academic Journey</h3>
                 <div className="relative">
                     <div className="hidden md:block absolute left-1/2 h-full rounded-lg w-0.5 bg-gray-200 dark:bg-gray-700 transform -translate-x-1/2"></div>
 
                     <div className="space-y-8">
                         {[
-                            {
-                                year: "January 2023 - Present",
-                                role: "Software Engineer (React.js)",
-                                company: "Web Crypt Technology",
-                                description: "Developing and maintaining React applications with TypeScript, implementing new features, and optimizing performance."
-                            },
-                            {
-                                year: "Augest 2022 - December 2022",
-                                role: "Software Engineer Trainee",
-                                company: "Web Crypt Technology",
-                                description: "Developing and maintaining React applications with TypeScript, implementing new features, and optimizing performance."
-                            },
+                            // {
+                            //     year: "January 2023 - Present",
+                            //     role: "Software Engineer (React.js)",
+                            //     company: "Web Crypt Technology",
+                            //     description: "Developing and maintaining React applications with TypeScript, implementing new features, and optimizing performance."
+                            // },
+                            // {
+                            //     year: "Augest 2022 - December 2022",
+                            //     role: "Software Engineer Trainee",
+                            //     company: "Web Crypt Technology",
+                            //     description: "Developing and maintaining React applications with TypeScript, implementing new features, and optimizing performance."
+                            // },
                             {
                                 year: "2020 - 2022",
                                 role: "Computer Application Post-Graduate (MCA)",
@@ -84,7 +84,19 @@ export default function About() {
                                 year: "2017 - 2020",
                                 role: "Computer Science Graduate (B.Sc.)",
                                 company: "Shivaji University, Kolhapur",
-                                description: "Specialized in Web Technologies and Software Development."
+                                description: "Specialized in Web Technologies."
+                            },
+                            {
+                                year: "2015 - 2017",
+                                role: "Higher Secondary (HSC)",
+                                company: "State Board, Maharashtra",
+                                description: "Specialized in Science"
+                            },
+                            {
+                                year: "2015",
+                                role: "Secondary (SSC)",
+                                company: "State Board, Maharashtra",
+                                description: "Completed with First Class Honors"
                             }
                         ].map((item, index) => (
                             <div
